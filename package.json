@@ -1,0 +1,33 @@
+{
+  "name": "user-authentication",
+  "version": "1.0.0",
+  "description": "用户身份验证系统",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "authentication",
+    "security"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^5.0.5",
+    "@types/node": "^20.0.0",
+    "@types/supertest": "^6.0.3",
+    "fast-check": "^3.0.0",
+    "happy-dom": "^20.0.11",
+    "jsdom": "^27.2.0",
+    "supertest": "^7.1.4",
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.14"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
+    "express": "^5.1.0"
+  }
+}

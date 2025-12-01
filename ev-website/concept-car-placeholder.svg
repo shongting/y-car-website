@@ -1,0 +1,69 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="carBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  
+  <!-- 地面 -->
+  <ellipse cx="960" cy="900" rx="800" ry="50" fill="#000" opacity="0.2"/>
+  
+  <!-- 车身主体 -->
+  <path d="M 400 700 Q 450 600 600 580 L 1300 580 Q 1450 600 1500 700 L 1450 750 L 450 750 Z" 
+        fill="url(#carBody)" stroke="#0088bb" stroke-width="3"/>
+  
+  <!-- 车顶 -->
+  <path d="M 600 580 L 700 450 L 1200 450 L 1300 580 Z" 
+        fill="url(#carBody)" stroke="#0088bb" stroke-width="3" opacity="0.9"/>
+  
+  <!-- 前挡风玻璃 -->
+  <path d="M 700 450 L 750 500 L 650 580 L 600 580 Z" 
+        fill="#1a1a2e" opacity="0.6" stroke="#0088bb" stroke-width="2"/>
+  
+  <!-- 后挡风玻璃 -->
+  <path d="M 1200 450 L 1150 500 L 1250 580 L 1300 580 Z" 
+        fill="#1a1a2e" opacity="0.6" stroke="#0088bb" stroke-width="2"/>
+  
+  <!-- 侧窗 -->
+  <path d="M 750 500 L 1150 500 L 1200 550 L 700 550 Z" 
+        fill="#1a1a2e" opacity="0.5" stroke="#0088bb" stroke-width="2"/>
+  
+  <!-- 前轮 -->
+  <circle cx="600" cy="750" r="80" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+  <circle cx="600" cy="750" r="50" fill="#2a2a2a" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="600" cy="750" r="20" fill="#00d4ff"/>
+  
+  <!-- 后轮 -->
+  <circle cx="1300" cy="750" r="80" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+  <circle cx="1300" cy="750" r="50" fill="#2a2a2a" stroke="#00d4ff" stroke-width="2"/>
+  <circle cx="1300" cy="750" r="20" fill="#00d4ff"/>
+  
+  <!-- 前灯 -->
+  <ellipse cx="420" cy="680" rx="30" ry="20" fill="#fff" opacity="0.9"/>
+  <ellipse cx="420" cy="680" rx="20" ry="12" fill="#00d4ff" opacity="0.8"/>
+  
+  <!-- 后灯 -->
+  <ellipse cx="1480" cy="680" rx="30" ry="20" fill="#ff3366" opacity="0.8"/>
+  
+  <!-- 车门线条 -->
+  <line x1="850" y1="580" x2="900" y2="750" stroke="#0088bb" stroke-width="2" opacity="0.7"/>
+  
+  <!-- 装饰线条 -->
+  <path d="M 450 720 L 1450 720" stroke="#00d4ff" stroke-width="2" opacity="0.5"/>
+  
+  <!-- 文字 -->
+  <text x="960" y="950" font-family="Arial, sans-serif" font-size="48" fill="#fff" text-anchor="middle" font-weight="bold">
+    未来驰 X1 概念车
+  </text>
+  <text x="960" y="1000" font-family="Arial, sans-serif" font-size="24" fill="#00d4ff" text-anchor="middle">
+    驾驭未来 · 零排放 · 智能驾驶
+  </text>
+</svg>

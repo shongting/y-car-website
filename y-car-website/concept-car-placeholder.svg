@@ -1,0 +1,37 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f3f4f6"/>
+  
+  <!-- 汽车轮廓 -->
+  <g transform="translate(150, 200)">
+    <!-- 车身 -->
+    <path d="M 50 100 L 100 50 L 350 50 L 400 100 L 450 100 L 450 150 L 50 150 Z" 
+          fill="#e5e7eb" stroke="#9ca3af" stroke-width="2"/>
+    
+    <!-- 车窗 -->
+    <path d="M 120 60 L 160 60 L 160 100 L 120 100 Z" 
+          fill="#cbd5e1" stroke="#9ca3af" stroke-width="1"/>
+    <path d="M 180 60 L 320 60 L 340 100 L 180 100 Z" 
+          fill="#cbd5e1" stroke="#9ca3af" stroke-width="1"/>
+    
+    <!-- 车轮 -->
+    <circle cx="120" cy="150" r="30" fill="#6b7280" stroke="#374151" stroke-width="2"/>
+    <circle cx="120" cy="150" r="15" fill="#9ca3af"/>
+    <circle cx="380" cy="150" r="30" fill="#6b7280" stroke="#374151" stroke-width="2"/>
+    <circle cx="380" cy="150" r="15" fill="#9ca3af"/>
+    
+    <!-- 车灯 -->
+    <ellipse cx="430" cy="120" rx="15" ry="10" fill="#fbbf24"/>
+    <ellipse cx="70" cy="120" rx="15" ry="10" fill="#ef4444"/>
+  </g>
+  
+  <!-- 文字提示 -->
+  <text x="400" y="450" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="24" fill="#6b7280">
+    概念车图片
+  </text>
+  <text x="400" y="480" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="16" fill="#9ca3af">
+    图片加载中或加载失败
+  </text>
+</svg>
