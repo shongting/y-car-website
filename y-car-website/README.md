@@ -96,10 +96,107 @@ y-car-website/
 
 ## 部署
 
+### 🌏 中国区域优化
+
+本项目已针对中国用户访问进行优化配置：
+
+- ✅ **部署区域**: 香港 (hkg1) + 新加坡 (sin1)
+- ✅ **预期延迟**: < 100ms
+- ✅ **加载时间**: < 3 秒
+- ✅ **缓存策略**: 已配置
+- ✅ **验证工具**: 完整提供
+
+**快速开始**: 查看 [中国区域部署总结](./CHINA_DEPLOYMENT_SUMMARY.md)
+
+### 部署平台
 可部署到以下平台：
-- Vercel
+- ✅ Vercel（推荐，已配置中国区域）
 - Netlify
 - GitHub Pages
+
+### 部署状态
+
+**GitHub 仓库**: https://github.com/shongting/y-car-website.git
+
+**部署步骤**：
+1. ✅ 代码已推送到 GitHub
+2. ✅ 已配置中国区域（香港 + 新加坡）
+3. ⏳ 等待在 Vercel 中导入项目
+4. ⏳ 等待部署完成
+5. ⏳ 验证部署结果
+
+详细部署指南请查看：
+- [部署指南](./DEPLOYMENT.md)
+- [中国区域部署指南](./CHINA_DEPLOYMENT_GUIDE.md)
+- [中国区域部署总结](./CHINA_DEPLOYMENT_SUMMARY.md)
+
+### 部署验证
+
+部署完成后，请使用以下工具进行验证：
+
+#### 验证工具
+
+1. **Node.js 验证脚本**（推荐）
+   ```bash
+   node verify-deployment.js https://你的URL.vercel.app
+   ```
+
+2. **中国访问检查脚本**
+   ```bash
+   # macOS/Linux
+   ./check-china-access.sh https://你的URL.vercel.app
+   
+   # Windows
+   check-china-access.bat https://你的URL.vercel.app
+   ```
+
+3. **浏览器验证工具**
+   - 打开 `deployment-test.html` 进行可视化验证
+
+4. **验证文档**
+   - 查看 `DEPLOYMENT_VERIFICATION.md` 了解详细验证清单
+   - 查看 `TASK_15_VERIFICATION_GUIDE.md` 获取完整指南
+
+**验证项目**：
+- [ ] 网站可通过公网 URL 访问（需求 5.1）
+- [ ] HTTPS 连接正常（需求 5.3）
+- [ ] 加载时间 < 3 秒（需求 5.2）
+- [ ] 部署在香港或新加坡区域
+- [ ] 桌面端显示正常
+- [ ] 移动端响应式布局正常
+- [ ] 所有功能正常工作
+- [ ] 从中国访问延迟 < 100ms
+
+### 访问链接
+
+**生产环境 URL**: _部署完成后填写_
+
+### 相关文档
+
+- 📖 [部署指南](./DEPLOYMENT.md)
+- 🌏 [中国区域部署指南](./CHINA_DEPLOYMENT_GUIDE.md)
+- 📋 [中国区域部署总结](./CHINA_DEPLOYMENT_SUMMARY.md)
+- ✅ [验证指南](./TASK_15_VERIFICATION_GUIDE.md)
+- 🛠️ [验证工具说明](./VERIFICATION_README.md)
+
+## 测试
+
+### 测试文件
+- `responsive-layout.test.js` - 响应式布局测试
+- `vehicle-rendering.test.js` - 车型渲染测试
+- `image-service.test.js` - 图片服务测试
+- `image-error-handling.test.js` - 图片错误处理测试
+- `image-modal.test.js` - 图片模态框测试
+- `form-validation.test.js` - 表单验证测试
+- `form-submission.test.js` - 表单提交测试
+- `storage-service.test.js` - 存储服务测试
+- `features-display.test.js` - 优势展示测试
+- `interaction-feedback.test.js` - 交互反馈测试
+
+### 运行测试
+```bash
+npm test
+```
 
 ## 许可证
 

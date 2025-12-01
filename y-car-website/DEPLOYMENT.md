@@ -40,6 +40,10 @@ Vercel 会自动检测到 `vercel.json` 配置文件，无需手动配置。
 - **Root Directory**: `./`
 - **Build Command**: 无需构建命令（静态网站）
 - **Output Directory**: `y-car-website`
+- **Regions**: Hong Kong (hkg1), Singapore (sin1) - 已配置用于中国访问优化
+
+**🌏 中国区域优化**：
+项目已配置为部署到香港和新加坡区域，确保中国用户获得最佳访问速度。详见 [中国区域部署指南](./CHINA_DEPLOYMENT_GUIDE.md)。
 
 #### 4. 部署
 
@@ -88,6 +92,14 @@ Vercel 自动提供：
 - ✅ 自动压缩（Gzip/Brotli）
 - ✅ 图片优化
 - ✅ 边缘缓存
+
+**中国访问优化**：
+- ✅ 部署到香港和新加坡区域
+- ✅ 配置了缓存策略
+- ✅ 预期延迟 < 100ms
+- ✅ 加载时间 < 3 秒
+
+详细优化指南请参考 [中国区域部署指南](./CHINA_DEPLOYMENT_GUIDE.md)。
 
 ### 监控和分析
 

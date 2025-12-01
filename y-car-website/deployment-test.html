@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y-car 部署验证工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            margin-top: 30px;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .result-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #ccc;
+        }
+
+        .result-section.success {
+            background: #f0fdf4;
+            border-left-color: #22c55e;
+        }
+
+        .result-section.warning {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+        }
+
+        .result-section.error {
+            background: #fef2f2;
+            border-left-color: #ef4444;
+        }
+
+        .result-section h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .result-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .result-section li {
+            padding: 5px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .result-section li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .result-section.success li:before {
+            color: #22c55e;
+        }
+
+        .result-section.warning li:before {
+            content: '⚠';
+            color: #f59e0b;
+        }
+
+        .result-section.error li:before {
+            content: '✗';
+            color: #ef4444;
+        }
+
+        .checklist {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 6px;
+        }
+
+        .checklist h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .checklist-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist-item:hover {
+            background: #f3f4f6;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .progress {
+            margin-top: 15px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .iframe-container {
+            margin-top: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Y-car 部署验证工具</h1>
+            <p>快速验证你的网站部署是否成功</p>
+        </div>
+
+        <div class="content">
+            <div class="input-group">
+                <label for="deploymentUrl">部署 URL</label>
+                <input 
+                    type="url" 
+                    id="deploymentUrl" 
+                    placeholder="https://y-car-website.vercel.app"
+                    value="https://y-car-website.vercel.app"
+                >
+            </div>
+
+            <button class="btn" onclick="startVerification()">开始验证</button>
+
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>正在验证部署...</p>
+            </div>
+
+            <div id="results" class="results">
+                <div id="basicChecks"></div>
+                <div id="contentChecks"></div>
+            </div>
+
+            <div class="checklist">
+                <h3>📋 手动验证清单</h3>
+                <p style="margin-bottom: 15px; color: #666; font-size: 14px;">
+                    请在浏览器中手动检查以下项目：
+                </p>
+                
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">桌面端布局正常（宽度 > 768px）</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">移动端布局正常（宽度 < 768px）</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">至少显示 3 款车型</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">图片点击放大功能正常</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">表单验证正常工作</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">表单提交成功并清空</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">数据保存到 LocalStorage</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check8">
+                    <label for="check8">交互动画流畅</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check9">
+                    <label for="check9">新能源优势展示正常</label>
+                </div>
+                <div class="checklist-item" onclick="toggleCheck(this)">
+                    <input type="checkbox" id="check10">
+                    <label for="check10">HTTPS 连接正常（锁图标）</label>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <p id="progressText" style="margin-top: 10px; text-align: center; color: #666; font-size: 14px;">
+                    完成度: 0/10
+                </p>
+            </div>
+
+            <div id="iframeContainer" class="iframe-container" style="display: none;">
+                <iframe id="previewFrame"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCheck(element) {
+            const checkbox = element.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const total = checkboxes.length;
+            const percentage = (checked / total) * 100;
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = `完成度: ${checked}/${total}`;
+        }
+
+        async function startVerification() {
+            const url = document.getElementById('deploymentUrl').value.trim();
+            
+            if (!url) {
+                alert('请输入部署 URL');
+                return;
+            }
+
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                alert('请输入有效的 URL（以 http:// 或 https:// 开头）');
+                return;
+            }
+
+            // 显示加载状态
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').classList.remove('show');
+            document.querySelector('.btn').disabled = true;
+
+            // 基础检查
+            const basicChecks = [];
+            const contentChecks = [];
+
+            // 检查 HTTPS
+            if (url.startsWith('https://')) {
+                basicChecks.push('✓ 使用 HTTPS 协议（需求 5.3）');
+            } else {
+                basicChecks.push('✗ 未使用 HTTPS 协议');
+            }
+
+            // 尝试加载网站
+            try {
+                const startTime = Date.now();
+                const response = await fetch(url, { mode: 'no-cors' });
+                const loadTime = Date.now() - startTime;
+
+                if (loadTime < 3000) {
+                    basicChecks.push(`✓ 加载时间 ${loadTime}ms（< 3秒，符合需求 5.2）`);
+                } else {
+                    basicChecks.push(`⚠ 加载时间 ${loadTime}ms（> 3秒，不符合需求 5.2）`);
+                }
+
+                basicChecks.push('✓ 网站可访问（需求 5.1）');
+
+                // 显示预览
+                document.getElementById('iframeContainer').style.display = 'block';
+                document.getElementById('previewFrame').src = url;
+
+                contentChecks.push('✓ 网站已在下方预览框中加载');
+                contentChecks.push('ℹ 请手动检查页面内容和功能');
+                contentChecks.push('ℹ 使用上方的手动验证清单进行完整测试');
+
+            } catch (error) {
+                basicChecks.push('✗ 网站访问失败: ' + error.message);
+            }
+
+            // 显示结果
+            displayResults(basicChecks, contentChecks);
+
+            // 隐藏加载状态
+            document.getElementById('loading').style.display = 'none';
+            document.querySelector('.btn').disabled = false;
+        }
+
+        function displayResults(basicChecks, contentChecks) {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.classList.add('show');
+
+            // 基础检查结果
+            const hasError = basicChecks.some(check => check.startsWith('✗'));
+            const hasWarning = basicChecks.some(check => check.startsWith('⚠'));
+            const basicClass = hasError ? 'error' : (hasWarning ? 'warning' : 'success');
+
+            document.getElementById('basicChecks').innerHTML = `
+                <div class="result-section ${basicClass}">
+                    <h3>基础检查</h3>
+                    <ul>
+                        ${basicChecks.map(check => `<li>${check}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            // 内容检查结果
+            document.getElementById('contentChecks').innerHTML = `
+                <div class="result-section success">
+                    <h3>内容验证</h3>
+                    <ul>
+                        ${contentChecks.map(check => `<li>${check}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        // 初始化进度
+        updateProgress();
+    </script>
+</body>
+</html>
