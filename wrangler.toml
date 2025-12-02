@@ -1,0 +1,19 @@
+# Cloudflare Pages 配置文件
+
+name = "y-car-website"
+compatibility_date = "2024-01-01"
+
+[build]
+command = ""
+cwd = ""
+watch_dirs = ["y-car-website"]
+
+[build.upload]
+format = "service-worker"
+dir = "y-car-website"
+main = "./y-car-website/index.html"
+
+[[build.upload.rules]]
+type = "Text"
+globs = ["**/*.html", "**/*.css", "**/*.js"]
+fallthrough = true
