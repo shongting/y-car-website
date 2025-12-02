@@ -17,10 +17,11 @@ export interface SecurityConfig {
 export function enforceHttps(req: Request, res: Response, next: NextFunction): void {
   // 在生产环境中强制使用 HTTPS
   if (process.env.NODE_ENV === 'production' && !req.secure && req.get('x-forwarded-proto') !== 'https') {
-    return res.status(403).json({
+    res.status(403).json({
       success: false,
       error: '此端点需要 HTTPS 连接'
     });
+    return;
   }
   next();
 }
@@ -71,20 +72,22 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
 
   // 如果没有 Origin 和 Referer，拒绝请求
   if (!origin && !referer) {
-    return res.status(403).json({
+    res.status(403).json({
       success: false,
       error: 'CSRF 验证失败：缺少 Origin 或 Referer 头'
     });
+    return;
   }
 
   // 验证 Origin
   if (origin) {
     const originHost = new URL(origin).host;
     if (originHost !== host) {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         error: 'CSRF 验证失败：Origin 不匹配'
       });
+      return;
     }
   }
 
@@ -92,10 +95,11 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   if (referer && !origin) {
     const refererHost = new URL(referer).host;
     if (refererHost !== host) {
-      return res.status(403).json({
+      res.status(403).json({
         success: false,
         error: 'CSRF 验证失败：Referer 不匹配'
       });
+      return;
     }
   }
 
