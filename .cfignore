@@ -1,0 +1,18 @@
+# Cloudflare Pages 忽略文件
+# 只部署 y-car-website 目录，忽略其他所有内容
+
+src/
+node_modules/
+dist/
+.git/
+.vscode/
+*.ts
+*.test.js
+*.test.ts
+tsconfig.json
+vitest.config.ts
+package.json
+package-lock.json
+SRE_Script/
+ev-website/
+.kiro/
