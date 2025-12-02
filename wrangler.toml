@@ -3,16 +3,5 @@
 name = "y-car-website"
 compatibility_date = "2024-01-01"
 
-[build]
-command = "echo 'No build needed - static files only'"
-cwd = "y-car-website"
-watch_dirs = ["y-car-website"]
-
-[build.upload]
-format = "service-worker"
-dir = "y-car-website"
-
-[[build.upload.rules]]
-type = "Text"
-globs = ["**/*.html", "**/*.css", "**/*.js", "**/*.svg"]
-fallthrough = true
+[assets]
+directory = "./y-car-website"
