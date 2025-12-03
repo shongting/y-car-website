@@ -335,7 +335,7 @@ const vehicleModels = [
     {
         id: 'y-car-sport',
         name: 'Y-Car Sport',
-        imageUrl: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?w=800&h=600&fit=crop',
+        imageUrl: 'https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&h=600&fit=crop',
         range: 650,
         priceRange: { min: 299000, max: 399000 },
         features: ['0-100km/h 3.2秒', '智能驾驶辅助', '全景天幕']
@@ -343,7 +343,7 @@ const vehicleModels = [
     {
         id: 'y-car-comfort',
         name: 'Y-Car Comfort',
-        imageUrl: 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&h=600&fit=crop',
+        imageUrl: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&h=600&fit=crop',
         range: 720,
         priceRange: { min: 259000, max: 329000 },
         features: ['超长续航', '豪华内饰', '静音座舱']
@@ -351,7 +351,7 @@ const vehicleModels = [
     {
         id: 'y-car-urban',
         name: 'Y-Car Urban',
-        imageUrl: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?w=800&h=600&fit=crop',
+        imageUrl: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop',
         range: 520,
         priceRange: { min: 189000, max: 239000 },
         features: ['城市代步', '灵活停车', '经济实惠']

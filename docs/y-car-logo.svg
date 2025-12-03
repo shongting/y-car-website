@@ -1,0 +1,40 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- 外圈渐变圆环 -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="yGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 外圈 -->
+  <circle cx="60" cy="60" r="55" fill="none" stroke="url(#logoGradient)" stroke-width="3"/>
+  
+  <!-- 内圈装饰 -->
+  <circle cx="60" cy="60" r="50" fill="url(#logoGradient)" opacity="0.1"/>
+  
+  <!-- Y 字母设计 - 现代科技感 -->
+  <g transform="translate(60, 60)">
+    <!-- 左上斜线 -->
+    <path d="M -20 -30 L 0 0" stroke="url(#yGradient)" stroke-width="8" stroke-linecap="round" fill="none"/>
+    
+    <!-- 右上斜线 -->
+    <path d="M 20 -30 L 0 0" stroke="url(#yGradient)" stroke-width="8" stroke-linecap="round" fill="none"/>
+    
+    <!-- 中间竖线 -->
+    <path d="M 0 0 L 0 25" stroke="url(#yGradient)" stroke-width="8" stroke-linecap="round" fill="none"/>
+    
+    <!-- 装饰圆点 -->
+    <circle cx="0" cy="0" r="4" fill="#ffffff"/>
+    <circle cx="-20" cy="-30" r="3" fill="#6366f1"/>
+    <circle cx="20" cy="-30" r="3" fill="#6366f1"/>
+    <circle cx="0" cy="25" r="3" fill="#6366f1"/>
+  </g>
+  
+  <!-- 底部装饰弧线 -->
+  <path d="M 30 95 Q 60 100 90 95" stroke="url(#logoGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+</svg>
